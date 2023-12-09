@@ -1,0 +1,24 @@
+Id: 1
+InitialStock: 90
+StockSent: 20
+StockHasntSent: 10
+FinalStock: 70
+#
+Id: 2
+InitialStock: 50
+StockSent: 15
+StockHasntSent: 5
+FinalStock: 35
+#
+Id: 3
+InitialStock: 88
+StockSent: 15
+StockHasntSent: 5
+FinalStock: 73
+#
+Id: 4
+InitialStock: 65
+StockSent: 10
+StockHasntSent: 10
+FinalStock: 55
+#
