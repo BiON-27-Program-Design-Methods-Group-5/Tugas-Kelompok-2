@@ -1,0 +1,81 @@
+Deklarasi Struktur Data:
+struct Shipment
+    int id
+    int initialStock
+    int stockSent
+    int stockHasntSent
+    int finalStock
+
+Deklarasi Fungsi-fungsi:
+clearBuffer()
+readShipments(Shipment shipments[], string filename) returns int
+writeShipment(Shipment shipments[], int size, string filename)
+printShipment(Shipment shipment[], int size)
+modifyShipment(Shipment shipment[], int index, int select)
+
+Main Program:
+    Shipment shipments[MAX_SHIPMENTS]
+    int shipmentCount = readShipments(shipments, "DataPengiriman.txt")
+    int option
+    int isSaved = 1
+
+    Jika shipmentCount == 0, Tampilkan pesan error dan keluar program
+
+    Lakukan
+        Tampilkan Menu Utama:
+        1. Lihat detail laporan pengiriman
+        2. Ubah detail pengiriman
+        3. Simpan Perubahan
+        4. Keluar
+        Masukan Pilihan (1-4): baca option dari pengguna
+
+        Switch (option)
+            Kasus 1:
+                printShipment(shipments, shipmentCount)
+                Tanya pengguna apakah ingin kembali ke Menu (1 = Ya)? baca temp dari pengguna
+                Jika temp bukan 1, maka printShipment(shipments, shipmentCount) lagi dan baca temp lagi
+
+            Kasus 2:
+                int id
+                printShipment(shipments, shipmentCount)
+
+                Lakukan
+                    Masukkan ID pengiriman yang ingin diubah (Masukkan 0 untuk kembali): baca id dari pengguna
+
+                    Jika id == 0, keluar dari loop
+                    Jika id < 1 atau id > shipmentCount, Tampilkan pesan bahwa ID tidak valid
+
+                Selama id < 1 atau id > shipmentCount
+
+                int temp
+                Tampilkan detail pengiriman untuk ID yang dipilih
+                Tampilkan pilihan untuk mengubah Jumlah Barang Awal, Jumlah Barang Terkirim, Jumlah Barang Belum Terkirim, atau Kembali
+                Masukkan pilihan: baca temp dari pengguna
+
+                Switch (temp)
+                    Kasus 1, 2, 3:
+                        modifyShipment(shipments, id, temp)
+                        isSaved = 0
+                        Keluar dari loop
+                    Default:
+                        Tampilkan pesan bahwa input tidak valid
+
+            Kasus 3:
+                Jika isSaved == 0
+                    writeShipment(shipments, shipmentCount, "DataPengiriman.txt")
+                    Tampilkan pesan bahwa perubahan berhasil disimpan
+                    isSaved = 1
+
+            Kasus 4:
+                Jika isSaved == 0
+                    Tampilkan pesan bahwa ada perubahan yang belum disimpan
+                    Tanya pengguna apakah ingin menyimpan perubahan (1 = Ya || 0 = Tidak)? baca isSaved dari pengguna
+                    Jika isSaved, writeShipment(shipments, shipmentCount, "DataPengiriman.txt") dan Tampilkan pesan bahwa perubahan berhasil disimpan
+                Keluar dari loop
+
+            Default:
+                Tampilkan pesan bahwa input tidak valid
+
+    Selama option != 4
+
+Keluar dari program dengan nilai 0
